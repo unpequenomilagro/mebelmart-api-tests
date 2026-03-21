@@ -1,0 +1,6 @@
+requests==2.32.5
+pytest==9.0.2
+allure-pytest==2.15.3
+loguru==0.7.3
+pytest-xdist==3.8.0
+pytest-parallel==0.1.1
