@@ -1,0 +1,5 @@
+PATCH https://jsonplaceholder.typicode.com/posts/101
+Body:
+{
+  "title": "New Title"
+}

@@ -1,0 +1,8 @@
+Status Code: 201
+Body:
+{
+  "name": "Test User",
+  "email": "test@example.com",
+  "username": "testuser",
+  "id": 11
+}

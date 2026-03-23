@@ -1,0 +1,7 @@
+POST https://jsonplaceholder.typicode.com/users
+Body:
+{
+  "name": "Test User",
+  "email": "test@example.com",
+  "username": "testuser"
+}

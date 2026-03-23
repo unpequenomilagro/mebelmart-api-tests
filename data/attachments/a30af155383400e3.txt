@@ -1,0 +1,5 @@
+PATCH https://jsonplaceholder.typicode.com/users/11
+Body:
+{
+  "name": "Updated Name"
+}

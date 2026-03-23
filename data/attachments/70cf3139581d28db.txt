@@ -1,0 +1,8 @@
+Status Code: 201
+Body:
+{
+  "title": "Test Post",
+  "body": "This is a test post content",
+  "userId": 1,
+  "id": 101
+}

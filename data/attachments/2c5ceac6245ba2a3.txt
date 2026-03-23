@@ -1,0 +1,9 @@
+Status Code: 201
+Body:
+{
+  "name": "Test Comment",
+  "body": "This is a test comment",
+  "email": "commenter@example.com",
+  "postId": 1,
+  "id": 501
+}

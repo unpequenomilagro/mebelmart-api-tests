@@ -1,0 +1,7 @@
+POST https://jsonplaceholder.typicode.com/todos
+Body:
+{
+  "title": "Test Todo",
+  "completed": false,
+  "userId": 1
+}
