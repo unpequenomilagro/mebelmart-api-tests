@@ -1,11 +1,11 @@
 class Config:
     """Конфигурация для API тестов"""
     
-    # Используем JSONPlaceholder - стабильный тестовый API
+    # Базовый URL API
     BASE_URL = "https://jsonplaceholder.typicode.com"
     
     # Таймауты
-    REQUEST_TIMEOUT = 30
+    REQUEST_TIMEOUT = 30  # Увеличили с 10 до 30
     
     # Тестовые данные
     TEST_USER = {

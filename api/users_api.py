@@ -6,34 +6,28 @@ class UsersAPI(BaseAPI):
     
     def __init__(self):
         super().__init__()
-        self.endpoint = "/users"  # без префикса /api
+        self.endpoint = "/users"
     
-    @allure.step("Получить список всех пользователей")
-    def get_all_users(self, params: dict = None):
-        """GET /users - получить всех пользователей"""
-        return self.get(self.endpoint, params=params)
+    @allure.step("GET /users - получить всех пользователей")
+    def get_all(self):
+        return self._make_request('GET', self.endpoint)
     
-    @allure.step("Получить пользователя по ID: {user_id}")
-    def get_user_by_id(self, user_id: int):
-        """GET /users/:id - получить пользователя по ID"""
-        return self.get(f"{self.endpoint}/{user_id}")
+    @allure.step("GET /users/{user_id} - получить пользователя по ID")
+    def get_by_id(self, user_id: int):
+        return self._make_request('GET', f"{self.endpoint}/{user_id}")
     
-    @allure.step("Создать нового пользователя")
-    def create_user(self, user_data: dict):
-        """POST /users - создать пользователя"""
-        return self.post(self.endpoint, json=user_data)
+    @allure.step("POST /users - создать пользователя")
+    def create(self, data: dict):
+        return self._make_request('POST', self.endpoint, json=data)
     
-    @allure.step("Обновить пользователя (полностью) по ID: {user_id}")
-    def update_user(self, user_id: int, user_data: dict):
-        """PUT /users/:id - полностью обновить пользователя"""
-        return self.put(f"{self.endpoint}/{user_id}", json=user_data)
+    @allure.step("PUT /users/{user_id} - обновить пользователя")
+    def update(self, user_id: int, data: dict):
+        return self._make_request('PUT', f"{self.endpoint}/{user_id}", json=data)
     
-    @allure.step("Частично обновить пользователя по ID: {user_id}")
-    def partial_update_user(self, user_id: int, user_data: dict):
-        """PATCH /users/:id - частично обновить пользователя"""
-        return self.patch(f"{self.endpoint}/{user_id}", json=user_data)
+    @allure.step("PATCH /users/{user_id} - частично обновить пользователя")
+    def partial_update(self, user_id: int, data: dict):
+        return self._make_request('PATCH', f"{self.endpoint}/{user_id}", json=data)
     
-    @allure.step("Удалить пользователя по ID: {user_id}")
-    def delete_user(self, user_id: int):
-        """DELETE /users/:id - удалить пользователя"""
-        return self.delete(f"{self.endpoint}/{user_id}")
+    @allure.step("DELETE /users/{user_id} - удалить пользователя")
+    def delete(self, user_id: int):
+        return self._make_request('DELETE', f"{self.endpoint}/{user_id}")

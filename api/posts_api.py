@@ -8,42 +8,26 @@ class PostsAPI(BaseAPI):
         super().__init__()
         self.endpoint = "/posts"
     
-    @allure.step("Получить список всех постов")
-    def get_all_posts(self, params: dict = None):
-        """GET /posts - получить все посты"""
-        return self.get(self.endpoint, params=params)
+    @allure.step("GET /posts - получить все посты")
+    def get_all(self):
+        return self._make_request('GET', self.endpoint)
     
-    @allure.step("Получить пост по ID: {post_id}")
-    def get_post_by_id(self, post_id: int):
-        """GET /posts/:id - получить пост по ID"""
-        return self.get(f"{self.endpoint}/{post_id}")
+    @allure.step("GET /posts/{post_id} - получить пост по ID")
+    def get_by_id(self, post_id: int):
+        return self._make_request('GET', f"{self.endpoint}/{post_id}")
     
-    @allure.step("Создать новый пост")
-    def create_post(self, post_data: dict):
-        """POST /posts - создать пост"""
-        return self.post(self.endpoint, json=post_data)
+    @allure.step("POST /posts - создать пост")
+    def create(self, data: dict):
+        return self._make_request('POST', self.endpoint, json=data)
     
-    @allure.step("Обновить пост (полностью) по ID: {post_id}")
-    def update_post(self, post_id: int, post_data: dict):
-        """PUT /posts/:id - полностью обновить пост"""
-        return self.put(f"{self.endpoint}/{post_id}", json=post_data)
+    @allure.step("PUT /posts/{post_id} - обновить пост")
+    def update(self, post_id: int, data: dict):
+        return self._make_request('PUT', f"{self.endpoint}/{post_id}", json=data)
     
-    @allure.step("Частично обновить пост по ID: {post_id}")
-    def partial_update_post(self, post_id: int, post_data: dict):
-        """PATCH /posts/:id - частично обновить пост"""
-        return self.patch(f"{self.endpoint}/{post_id}", json=post_data)
+    @allure.step("PATCH /posts/{post_id} - частично обновить пост")
+    def partial_update(self, post_id: int, data: dict):
+        return self._make_request('PATCH', f"{self.endpoint}/{post_id}", json=data)
     
-    @allure.step("Удалить пост по ID: {post_id}")
-    def delete_post(self, post_id: int):
-        """DELETE /posts/:id - удалить пост"""
-        return self.delete(f"{self.endpoint}/{post_id}")
-    
-    @allure.step("Поиск постов по запросу: {query}")
-    def search_posts(self, query: str):
-        """GET /posts?q=... - поиск постов (в JSONPlaceholder нет поиска, просто фильтр)"""
-        return self.get(self.endpoint, params={"title_like": query})
-    
-    @allure.step("Получить комментарии поста по ID: {post_id}")
-    def get_post_comments(self, post_id: int):
-        """GET /posts/:id/comments - получить комментарии к посту"""
-        return self.get(f"{self.endpoint}/{post_id}/comments")
+    @allure.step("DELETE /posts/{post_id} - удалить пост")
+    def delete(self, post_id: int):
+        return self._make_request('DELETE', f"{self.endpoint}/{post_id}")
