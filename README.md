@@ -1,24 +1,96 @@
-# Mebelmart API Autotest Framework
-
-Фреймворк для автоматизированного тестирования API сервиса ApiMocker (https://apimocker.com)
-
 ## Технологии
-- Python 3.14
-- Requests
-- Pytest
-- Allure Reports
-- Layered Architecture
 
-## Установка
+| Технология | Назначение |
+|------------|------------|
+| Python 3.14 | Язык программирования |
+| Requests | HTTP-клиент для API запросов |
+| Pytest | Фреймворк для тестирования |
+| Allure | Формирование отчетов |
+| Loguru | Логирование |
+
+---
+
+## Тест-кейсы
+
+### Users API (6 тестов)
+
+| Метод | Эндпоинт | Описание |
+|-------|----------|----------|
+| GET | `/users` | Получение списка всех пользователей |
+| GET | `/users/1` | Получение пользователя по ID |
+| GET | `/users/999999` | Пользователь не найден (404) |
+| POST | `/users` | Создание нового пользователя |
+| PATCH | `/users/11` | Частичное обновление пользователя |
+| DELETE | `/users/11` | Удаление пользователя |
+
+### Posts API (6 тестов)
+
+| Метод | Эндпоинт | Описание |
+|-------|----------|----------|
+| GET | `/posts` | Получение списка всех постов |
+| GET | `/posts/1` | Получение поста по ID |
+| GET | `/posts/999999` | Пост не найден (404) |
+| POST | `/posts` | Создание нового поста |
+| PATCH | `/posts/101` | Частичное обновление поста |
+| DELETE | `/posts/101` | Удаление поста |
+
+### Todos API (6 тестов)
+
+| Метод | Эндпоинт | Описание |
+|-------|----------|----------|
+| GET | `/todos` | Получение списка всех задач |
+| GET | `/todos/1` | Получение задачи по ID |
+| GET | `/todos/999999` | Задача не найдена (404) |
+| POST | `/todos` | Создание новой задачи |
+| PATCH | `/todos/201` | Обновление статуса задачи |
+| DELETE | `/todos/201` | Удаление задачи |
+
+### Comments API (5 тестов)
+
+| Метод | Эндпоинт | Описание |
+|-------|----------|----------|
+| GET | `/comments?_limit=50` | Получение 50 комментариев |
+| GET | `/comments/1` | Получение комментария по ID |
+| GET | `/comments/999999` | Комментарий не найден (404) |
+| POST | `/comments` | Создание нового комментария |
+| DELETE | `/comments/501` | Удаление комментария |
+
+**Всего: 23 теста**
+
+---
+
+## Установка и запуск
+
+
+1. Клонирование репозитория
 
 ```bash
-# Клонировать репозиторий
-git clone https://github.com/unpequenomilagro/mebelmart-api-tests.git
-cd mebelmart-api-tests
+git clone https://github.com/unpequenomilagro/unpeq-api-tests.git
+cd unpeq-api-tests
+```
 
-# Создать виртуальное окружение
+2. Создание виртуального окружения
+
+```bash
 python -m venv venv
-.\venv\Scripts\activate
+venv\Scripts\activate          # Windows
+```
 
-# Установить зависимости
+3. Установка зависимостей
+
+```bash
 pip install -r requirements.txt
+```
+
+4. Запуск тестов
+
+```bash
+pytest -v
+```
+
+5. Отчет
+
+```bash
+allure generate allure-results -o allure-report --clean
+allure open allure-report
+```
